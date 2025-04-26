@@ -1,0 +1,496 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+ \usepackage{graphicx}
+ \usepackage{titling}
+
+ \title{Lab Assignment 3 : React Native }
+
+\date{November 2022}
+ 
+ \usepackage{fancyhdr}
+\fancypagestyle{plain}{%  the preset of fancyhdr 
+    \fancyhf{} % clear all header and footer fields
+    \fancyfoot[R]{\includegraphics[width=2cm]{KULEUVEN_GENT_RGB_LOGO.png}}
+    \fancyfoot[L]{\thedate}
+    \fancyhead[L]{Web Technologies}
+    \fancyhead[R]{\theauthor}
+}
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+\usepackage{lipsum}  
+\usepackage{cmbright}
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+    Student: Abdu Raziq Hidayathulla \theauthor\\
+     Banner ID: 001323544
+ 
+\end{tabular}
+
+\section*{TASK 1 (Total 40 Points)}
+
+(1) Screenshots of Your App\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.3\linewidth]{expo hello world .png}
+    \caption{hello word text in my Android Emulator}
+    \label{fig:enter-label}
+\end{figure}\\
+\section*{Differences Between Emulator and Physical Device}
+
+\begin{itemize}
+    \item \textbf{Performance:}
+    \begin{itemize}
+        \item \textbf{Emulator:} Tends to be slower than a physical device, especially for tasks like rendering UI components or handling animations.
+        \item \textbf{Physical Device:} Provides smoother performance with faster responsiveness, especially for UI-heavy applications.
+    \end{itemize}
+
+    \item \textbf{Touch Interactions:}
+    \begin{itemize}
+        \item \textbf{Emulator:} The mouse or touchpad is used for interactions, which may not fully replicate real touch interactions.
+        \item \textbf{Physical Device:} Touch gestures like swiping and tapping are more accurate, providing a true user experience.
+    \end{itemize}
+
+    \item \textbf{Hardware Features:}
+    \begin{itemize}
+        \item \textbf{Emulator:} May have limited hardware features like sensors, camera, or GPS compared to a physical device.
+        \item \textbf{Physical Device:} All native sensors (accelerometer, gyroscope, GPS) are available and can be tested.
+    \end{itemize}
+
+    \item \textbf{Battery Usage:}
+    \begin{itemize}
+        \item \textbf{Emulator:} Does not drain battery like a real device.
+        \item \textbf{Physical Device:} Can experience battery drain, which may affect longer sessions of testing.
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.3\linewidth]{physical device expo.jpg}
+    \caption{Hello world in my physical device}
+    \label{fig:enter-label}
+\end{figure}
+\\
+
+2) Setting Up an Emulator (10 Points)\\
+
+\subsection*{Steps to Set Up an Emulator in Android Studio:}
+
+\begin{enumerate}
+    \item \textbf{Install Android Studio:} If not already installed, download and install Android Studio from the official website.
+    \item \textbf{Launch Android Studio and open your project.}
+    \item \textbf{Open AVD Manager:}
+    \begin{itemize}
+        \item Click on the "AVD Manager" icon in the top toolbar of Android Studio (or go to Tools > AVD Manager).
+    \end{itemize}
+    \item \textbf{Create a Virtual Device:}
+    \begin{itemize}
+        \item Click on Create Virtual Device.
+        \item Choose a hardware profile, like Pixel 4 or Nexus 5X, based on your needs.
+    \end{itemize}
+    \item \textbf{Select a System Image:}
+    \begin{itemize}
+        \item Pick a system image that matches your app's target SDK. For example, Android 11 or Android 12.
+        \item If the required image isn't downloaded, click Download to get it.
+    \end{itemize}
+    \item \textbf{Configure Emulator Settings:}
+    \begin{itemize}
+        \item Customize the AVD settings if necessary, such as setting the resolution, RAM, or enabling GPU support for better performance.
+    \end{itemize}
+    \item \textbf{Launch the Emulator:}
+    \begin{itemize}
+        \item Click Finish to create the AVD, then click Play to launch the emulator.
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Challenges Faced During Setup:}
+
+\begin{itemize}
+    \item \textbf{System Image Issues:} Sometimes, the system image may not download correctly due to a slow internet connection or a corrupted download. Re-downloading the image usually resolves the issue.
+    \item \textbf{Performance Problems:} Initial setup can cause the emulator to run slowly, especially if hardware acceleration is not enabled. This was solved by ensuring the Intel HAXM (Hardware Accelerated Execution Manager) is installed on the machine.
+    \item \textbf{Emulator Crashes:} The emulator may crash if the allocated RAM is too high or incompatible with the machine's specs. I reduced the memory allocation and increased the disk space.\\
+\end{itemize}
+\\
+
+(3) Running the App on a Physical Device Using Expo (10 Points)
+\subsection*{Steps to Connect Physical Device to Expo:}
+
+\begin{enumerate}
+    \item \textbf{Install Expo Go App:} 
+    \begin{itemize}
+        \item Download and install the Expo Go app from the Google Play Store (for Android) or Apple App Store (for iOS).
+    \end{itemize}
+    \item \textbf{Install Expo CLI:} 
+    \begin{itemize}
+        \item Ensure you have Expo CLI installed globally. Run \texttt{npm install -g expo-cli} in your terminal.
+    \end{itemize}
+    \item \textbf{Start the App on Your Computer:} 
+    \begin{itemize}
+        \item Navigate to your project directory in the terminal and run \texttt{expo start}. This will open the Expo Developer Tools in your browser.
+    \end{itemize}
+    \item \textbf{Scan the QR Code:} 
+    \begin{itemize}
+        \item The Expo Developer Tools will display a QR code. Open the Expo Go app on your device, then scan the QR code to load the app onto your device.
+        \item If the QR code does not work, ensure that both your computer and mobile device are on the same Wi-Fi network.
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Troubleshooting Steps:}
+
+\begin{itemize}
+    \item \textbf{Device Not Detected:} If the app fails to open on the device, ensure that your firewall or network settings are not blocking the connection.
+    \item \textbf{QR Code Not Working:} If scanning the QR code doesn’t work, try restarting Expo by pressing \texttt{Ctrl+C} in the terminal and then re-running \texttt{expo start}.
+    \item \textbf{App Lag or Delays:} If the app experiences delays or lag on the physical device, it could be due to a poor network connection or device limitations.\\\\\\\\\\\\\\\\\\
+\end{itemize}
+\\
+
+
+(4) Comparison of Emulator vs. Physical Device (10 Points)\\
+
+\section*{Emulator vs. Physical Device for React Native Development}
+
+\subsection*{Advantages of Emulator:}
+
+\begin{itemize}
+    \item \textbf{Simulates multiple devices:} You can quickly test different screen sizes and Android versions without needing multiple physical devices.
+    \item \textbf{No Battery Drain:} The emulator doesn't consume device battery, allowing for prolonged testing.
+    \item \textbf{Cost-Effective:} There’s no need to invest in multiple physical devices for testing.
+    \item \textbf{Convenient Setup:} You can set up and use an emulator quickly, without needing an actual device.
+\end{itemize}
+
+\subsection*{Disadvantages of Emulator:}
+
+\begin{itemize}
+    \item \textbf{Slower Performance:} Emulators tend to be slower compared to real devices, especially when it comes to rendering complex UIs and animations.
+    \item \textbf{Limited Sensors:} Physical sensors like GPS, accelerometers, and cameras cannot be fully simulated (though some can be emulated partially).
+    \item \textbf{Less Accurate Testing:} Some touch interactions may feel different, leading to inaccurate results.
+\end{itemize}
+
+\subsection*{Advantages of Physical Device:}
+
+\begin{itemize}
+    \item \textbf{Real User Experience:} Provides accurate touch interactions and real-time performance testing.
+    \item \textbf{Access to Hardware Sensors:} Full access to sensors like GPS, camera, gyroscope, etc., which is essential for testing apps with such features.
+    \item \textbf{Better Performance:} Provides a more accurate sense of app performance, especially for resource-intensive apps.
+\end{itemize}
+
+\subsection*{Disadvantages of Physical Device:}
+
+\begin{itemize}
+    \item \textbf{Battery Drain:} Continuous testing can quickly drain the battery.
+    \item \textbf{Costly and Limited:} You may need to buy different devices for various screen sizes and operating systems (if targeting iOS and Android).
+    \item \textbf{Setup:} Requires more setup, including enabling developer options and connecting the device via USB or Wi-Fi.\\\\\\
+\end{itemize}
+
+(5) Troubleshooting a Common Error (5 Points)\\
+\section*{Common Error Encountered}
+
+\subsection*{Error: "Could not connect to the development server" or "Unable to load the JavaScript bundle" when running the app in the emulator or on a physical device.}
+
+\subsection*{Cause of the Error:}
+
+This issue usually occurs when the development server fails to load properly due to incorrect network settings or the app not being able to connect to the local server.
+
+\subsection*{Steps to Resolve the Error:}
+
+\begin{enumerate}
+    \item \textbf{Restart the Development Server:} 
+    \begin{itemize}
+        \item Run \texttt{expo start} again to restart the server. In some cases, the server might not have started correctly.
+    \end{itemize}
+    \item \textbf{Clear the Cache:} 
+    \begin{itemize}
+        \item Run \texttt{expo start -c} to clear the cache and ensure that no outdated files are causing issues.
+    \end{itemize}
+    \item \textbf{Check Network Connection:} 
+    \begin{itemize}
+        \item Ensure that both the emulator/physical device and the computer are connected to the same Wi-Fi network.
+    \end{itemize}
+    \item \textbf{Reinstall Expo Go:} 
+    \begin{itemize}
+        \item Uninstall and reinstall the Expo Go app on the physical device to fix any potential app-related issues.
+    \end{itemize}
+    \item \textbf{Check Port Availability:} 
+    \begin{itemize}
+        \item Sometimes, the default port may be blocked. In such cases, changing the port in Expo Developer Tools or using localhost might resolve the issue.
+    \end{itemize}
+\end{enumerate}
+
+
+\section*{TASK 2  Building a Simple To-Do List App (60 Points)}
+\\
+(a) Mark Tasks as Complete (15 Points)\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{todo home page.jpg}
+    \caption{ToDo Home page }
+    \label{fig:enter-label}
+\end{figure}\\
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{adding task.jpg}
+    \caption{Adding task in the app}
+    \label{fig:enter-label}
+\end{figure}\\
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{complete task.jpg}
+    \caption{marking complete for the completed task}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{delete.jpg}
+    \caption{deleting task in the app }
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{edit task.jpg}
+    \caption{Editing task to make changes }
+    \label{fig:enter-label}
+\end{figure}\\
+
+\section*{Mark Tasks as Complete}
+
+
+
+\subsection*{Toggle Function}
+
+The \texttt{toggleTask} function is used to toggle a task's completion state. When a task is clicked, the completed status is changed, and the task list is updated:
+
+\begin{verbatim}
+const toggleTask = (id) => {
+  const updatedTasks = tasks.map(task =>
+    task.id === id ? { ...task, completed: !task.completed } : task
+  );
+  setTasks(updatedTasks);
+  saveTasks(updatedTasks);
+};
+\end{verbatim}
+
+This function checks the task's current \texttt{completed} state and toggles it.
+
+\subsection*{Styling Completed Tasks}
+
+The completed tasks are styled differently using the \texttt{completedTaskCard} style, which lightens the background of completed tasks. Additionally, the checkbox is styled with the \texttt{checkedBox} style to visually indicate completion:
+
+\begin{verbatim}
+<TouchableOpacity
+  style={[styles.taskCard, item.completed && styles.completedTaskCard]}
+  onPress={() => toggleTask(item.id)}
+>
+\end{verbatim}
+
+The style \texttt{completedTaskCard} is defined as:
+
+\begin{verbatim}
+completedTaskCard: {
+  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+},
+\end{verbatim}
+
+The checkbox for completed tasks is styled as follows:
+
+\begin{verbatim}
+checkbox: {
+  width: 24,
+  height: 24,
+  borderRadius: 12,
+  borderWidth: 2,
+  borderColor: '#6B4EFF',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginLeft: 10,
+},
+checkedBox: {
+  backgroundColor: '#6B4EFF',
+  borderColor: '#6B4EFF',
+},
+\end{verbatim}
+
+\subsection*{State Update}
+
+When a task is toggled as complete, the \texttt{setTasks} function updates the task list, and the changes are saved to \texttt{AsyncStorage}:
+
+\begin{verbatim}
+const updatedTasks = tasks.map(task =>
+  task.id === id ? { ...task, completed: !task.completed } : task
+);
+setTasks(updatedTasks);
+saveTasks(updatedTasks);
+\end{verbatim}\\
+
+\vspace{2cm}
+(b) Persist Data Using AsyncStorage (15 Points)
+
+\section*{Persist Data Using AsyncStorage}
+
+\subsection*{Saving Data}
+
+When tasks are added, updated, or deleted, they are saved to AsyncStorage to persist the data. The following function saves the tasks:
+
+\begin{verbatim}
+const saveTasks = async (newTasks) => {
+  try {
+    await AsyncStorage.setItem('tasks', JSON.stringify(newTasks));
+  } catch (error) {
+    Alert.alert('Error', 'Failed to save tasks');
+  }
+};
+\end{verbatim}
+
+\subsection*{Loading Data}
+
+When the app is launched, tasks are loaded from AsyncStorage using the \texttt{loadTasks} function. The following code demonstrates how to load tasks when the app starts:
+
+\begin{verbatim}
+useEffect(() => {
+  loadTasks();
+}, []);
+
+const loadTasks = async () => {
+  try {
+    const storedTasks = await AsyncStorage.getItem('tasks');
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  } catch (error) {
+    Alert.alert('Error', 'Failed to load tasks');
+  }
+};
+\end{verbatim}
+
+\subsection*{Persistence}
+
+The tasks persist even after the app is closed and reopened, as they are stored in AsyncStorage and loaded on startup.\\
+
+\vspace{1cm}
+(c) Edit Tasks (10 Points)
+\section*{Edit Tasks}
+
+\subsection*{Edit Mode}
+
+Users can tap on a task to edit its title. The \texttt{startEdit} function is used to set the current task's title in the modal and mark it as editable:
+
+\begin{verbatim}
+const startEdit = (task) => {
+  setEditingId(task.id);
+  setCurrentTask({ title: task.title });
+  setModalVisible(true);
+};
+\end{verbatim}
+
+\subsection*{Updating Task}
+
+The \texttt{updateTask} function is responsible for updating the task title in the tasks array. The task is located by its ID, and its title is updated based on the user's input:
+
+\begin{verbatim}
+const updateTask = () => {
+  if (currentTask.title.trim() === '') {
+    Alert.alert('Error', 'Please enter a task title');
+    return;
+  }
+
+  const updatedTasks = tasks.map(task =>
+    task.id === editingId
+      ? { ...task, title: currentTask.title }
+      : task
+  );
+
+  setTasks(updatedTasks);
+  saveTasks(updatedTasks);
+  setCurrentTask({ title: '' });
+  setEditingId(null);
+  setModalVisible(false);
+};
+\end{verbatim}
+
+\subsection*{UI for Editing}
+
+The modal shows a text input field where the user can modify the task’s title:
+
+\begin{verbatim}
+<TextInput
+  style={styles.input}
+  placeholder="Task title"
+  value={currentTask.title}
+  onChangeText={(text) => setCurrentTask({...currentTask, title: text})}
+/>
+\end{verbatim}\\
+\vspace{1cm}
+(d) Add Animations (10 Points)
+\section*{Add Animations}
+
+\subsection*{Animation with the Animated API}
+
+In the current app, the \texttt{Animated} API is not explicitly used. However, you could improve user experience by adding animations to tasks when they are added or deleted. For example, to animate a task when it is added, wrap the task component in an \texttt{Animated.View} and apply animations such as opacity or sliding in:
+
+\begin{verbatim}
+import { Animated } from 'react-native';
+
+const fadeIn = new Animated.Value(0);
+
+const taskAddAnimation = () => {
+  Animated.timing(fadeIn, {
+    toValue: 1,
+    duration: 500,
+    useNativeDriver: true,
+  }).start();
+};
+\end{verbatim}
+
+Then, wrap the task list in an \texttt{Animated.View} component to apply the animation:
+
+\begin{verbatim}
+<Animated.View style={{ opacity: fadeIn }}>
+  <TaskItem item={item} />
+</Animated.View>
+\end{verbatim}
+
+\subsection*{Enhancing User Experience}
+
+Animations such as fading in new tasks or sliding in deleted tasks would make transitions feel smoother, improving the overall user experience. For example, a fade-out effect can be added when deleting a task:
+
+\begin{verbatim}
+Animated.timing(fadeOut, {
+  toValue: 0,
+  duration: 500,
+  useNativeDriver: true,
+}).start();
+\end{verbatim}
+
+\section*{GitHub Link of my ToDo app}
+\href{https://github.com/Abduraziq/ToDo-ReactNative-app.git}
+
+\end{document}
+
+
+
